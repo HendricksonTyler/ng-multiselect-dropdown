@@ -87,7 +87,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
             ? new ListItem(item)
             : new ListItem({
                 id: item[this._settings.idField],
-                text: item[this._settings.textField]
+                text: this.getValue(item, this._settings.textField)
+                // text: item[this._settings.textField]
               })
       );
     }
@@ -118,6 +119,23 @@ export class MultiSelectComponent implements ControlValueAccessor {
   }
 
   constructor(private cdr: ChangeDetectorRef) {}
+
+  getValue(item: any, nestedPath: string) {
+    const nestedProps = nestedPath.split('.');
+  
+    if (nestedProps.length === 1) {
+        return item[nestedPath];
+    } else {
+        let nestedItem = item;
+        nestedProps.forEach((nestedProp) => {
+            if (nestedItem) {
+                nestedItem = nestedItem[nestedProp];
+            }
+        });
+    
+        return nestedItem;
+    }
+}
 
   onItemClick($event: any, item: ListItem) {
     if (this.disabled) {
