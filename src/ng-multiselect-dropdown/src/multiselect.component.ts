@@ -164,7 +164,6 @@ export class MultiSelectComponent implements ControlValueAccessor {
   }
 
   writeValue(value: any) {
-    console.log('Writing value: ', value);
     if (value !== undefined && value !== null && value.length > 0) {
       if (this._settings.singleSelection) {
         try {
