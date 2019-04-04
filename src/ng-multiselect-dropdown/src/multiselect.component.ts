@@ -163,11 +163,12 @@ export class MultiSelectComponent implements ControlValueAccessor {
   }
 
   writeValue(value: any) {
+    console.log('Writing value: ', value);
     if (value !== undefined && value !== null && value.length > 0) {
       if (this._settings.singleSelection) {
         try {
           if (value.length >= 1) {
-            const firstItem = value[0];
+            const firstItem = value;
             this.selectedItems = [
               typeof firstItem === 'string'
                 ? new ListItem(firstItem)
