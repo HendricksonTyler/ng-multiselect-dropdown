@@ -280,7 +280,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
   }
 
   emittedValue(val: any): any {
-    const selected = [];
+    let selected = [];
     if (Array.isArray(val)) {
       val.map(item => {
         if (item.id === item.text) {
@@ -298,6 +298,11 @@ export class MultiSelectComponent implements ControlValueAccessor {
         }
       }
     }
+
+    if (this._settings.singleSelection) {
+      selected = selected[0];
+    }
+
     return selected;
   }
 
