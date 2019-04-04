@@ -34,6 +34,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
   filter: ListItem = new ListItem(this.data);
   defaultSettings: IDropdownSettings = {
     singleSelection: false,
+    idMode: false,
     idField: 'id',
     textField: 'text',
     enableCheckAll: true,
@@ -302,6 +303,10 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
     if (this._settings.singleSelection) {
       selected = selected[0];
+
+      if (this._settings.idMode) {
+        selected = selected[this._settings.idField];
+      }
     }
 
     return selected;
