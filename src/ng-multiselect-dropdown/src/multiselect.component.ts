@@ -304,7 +304,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
     if (this._settings.singleSelection) {
       selected = selected[0];
 
-      if (this._settings.idMode) {
+      if (this._settings.idMode && selected) {
         selected = selected[this._settings.idField];
       }
     }
